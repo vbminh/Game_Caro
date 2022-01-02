@@ -12,7 +12,8 @@ public class State {
 		this.moveSteps = new ArrayList<Cell>();
 		this.cell = new int[Value.SIZE][Value.SIZE];
 		for (int i=0; i<Value.SIZE; i++) {
-			for(int j=0; j<Value.SIZE; j++) cell[i][j] = 0;
+			for(int j=0; j<Value.SIZE; j++) 
+				cell[i][j] = 0;
 		}
 	}
 	
@@ -44,13 +45,14 @@ public class State {
 	}
 	
 	public void setState(int[][] cell) {
-		for (int i=0; i<Value.SIZE; i++) {
-			for(int j=0; j<Value.SIZE; j++) this.cell[i][j] = cell[i][j];
+		for(int i=0; i<Value.SIZE; i++) {
+			for(int j=0; j<Value.SIZE; j++)
+				this.cell[i][j] = cell[i][j];
 		}
 	}
 	
 	public void printState() {
-		for (int i=0; i<Value.SIZE; i++) {
+		for(int i=0; i<Value.SIZE; i++) {
 			for(int j=0; j<Value.SIZE; j++) {
 				if(cell[i][j] == Value.AI_VALUE) System.out.print("- ");
 				else if(cell[i][j] == Value.USER_VALUE) System.out.print("+ ");
@@ -60,8 +62,8 @@ public class State {
 		}
 	}
 	
-	//Kiểm tra người thắng cuộc
-	//trả về true nếu player thắng, false nếu ngược lại
+	/*Kiểm tra người thắng cuộc
+	true nếu player thắng, false nếu ngược lại*/
 	public boolean checkWinner(int player) {
 		int[] lineX = {1, 1, 0, 1}; //kiểm tra điểm 4 hướng để tìm ng thắng
 		int[] lineY = {0, 1, 1, -1};
@@ -69,21 +71,21 @@ public class State {
 			for (int y = 0; y < Value.SIZE; y++) {
 				if(cell[x][y] == player) { //Nếu ô này đã được player chọn => kiểm tra			
 					for (int i = 0; i < 4; i++) { //Kiểm tra 4 đường
-						int count = 1; // count = 5 => player chiến thắng
-						for(int j = 1; j <= 4; j++) { // kiểm tra 4 ô tiếp theo
-							int vtx = x + lineX[i]*j; // vị trí x của ô tiếp theo cần check
-							int vty = y + lineY[i]*j; // vị trí y của ô tiếp theo cần check
-							// vtx hoặc vty < 0 hoặc > Value.SIZE, hoặc ô này != ô đầu => khỏi ktra
+						int count = 1; //count = 5 => player chiến thắng
+						for(int j = 1; j <= 4; j++) { //kiểm tra 4 ô tiếp theo
+							int vtx = x + lineX[i]*j; //vị trí x của ô tiếp theo cần check
+							int vty = y + lineY[i]*j; //vị trí y của ô tiếp theo cần check
+							//vtx hoặc vty < 0 hoặc > Value.SIZE, hoặc ô này != ô đầu => khỏi ktra
 							if(vtx < 0 || vty < 0 || vtx >= Value.SIZE || vty >= Value.SIZE) break;
 							if(cell[vtx][vty] == player) count++;
 							else break;
 						}
-						if(count == 5) return true; // Player thắng
+						if(count == 5) return true; //Player thắng
 					}
 				}
 			}
 		}
-		return false; // Không ai thắng cả
+		return false; //Không ai thắng cả
 	}
 
 	//Kiểm tra một ô đã có ai đánh chưa
@@ -93,8 +95,8 @@ public class State {
 		return false;
 	}
 	
-	//Hết ô để đánh
-	//true: hết, false: chưa hết
+	/*Hết ô để đánh
+	true: hết, false: chưa hết*/
 	public boolean isOver() {
 		if(this.steps == Value.SIZE*Value.SIZE) return true;
 		else return false;

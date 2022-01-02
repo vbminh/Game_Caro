@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Value {
 	
-	//Số hàng/số cột mặc định
+	//kích thước bàn cờ
 	public static final int SIZE = 15;
 	
 	//Chế độ chơi mặc định: User đi trước
@@ -31,14 +31,11 @@ public class Value {
 	//Màu mặc định khi user click vào một ô trong bàn cờ
 	public static final Color CLICK_CELL_COLOR = Color.lightGray;
 	
-	//Màu nền mặc định
-	public static final Color BACKGROUND_COLOR = Color.WHITE; 
-	
 	//Giá trị mặc định của user
 	public static final int USER_VALUE = 1;
 	
 	//Giá trị mặc định của AI
-	public static final int AI_VALUE = 2;
+	public static final int AI_VALUE = -1;
 	
 	//Độ sâu tìm kiếm tối đa
 	public static final int MAX_DEPTH = 3;

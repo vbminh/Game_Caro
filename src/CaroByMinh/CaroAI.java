@@ -101,34 +101,33 @@ public class CaroAI {
 	    //Lượng giá cho Max(AI)
 	    private int maxValue(State state, int alpha, int beta, int depth) {
 	        if (depth >= Value.MAX_DEPTH || state.checkWinner(Value.AI_VALUE) || state.isOver()) {
-	            int val = heuristic.evaluateState(state);
-	            return val;
+	        	return heuristic.evaluateState(state);
+	            
 	        }
 	        heuristic.evaluateEachCell(state, Value.AI_VALUE);
 	        ArrayList<EvalCell> list = heuristic.getOptimalList();
-	        for (int i = 0; i < list.size(); i++) {
-	            state.getState()[list.get(i).getCell().getX()][list.get(i).getCell().getY()] = Value.AI_VALUE;
+	        for (EvalCell item : list) {
+	            state.getState()[item.getCell().getX()][item.getCell().getY()] = Value.AI_VALUE;
 	            alpha = Math.max(alpha, minValue(state, alpha, beta, depth + 1));
-	            state.getState()[list.get(i).getCell().getX()][list.get(i).getCell().getY()] = 0;
+	            state.getState()[item.getCell().getX()][item.getCell().getY()] = 0;
 	            if (alpha >= beta) {
 	                break;
 	            }
 	        }
 	        return alpha;
 	    }
-
+ 
 	    //Lượng giá cho Min(User)
 	    private int minValue(State state, int alpha, int beta, int depth) {
 	        if (depth >= Value.MAX_DEPTH || state.checkWinner(Value.USER_VALUE) || state.isOver()) {
-	            int val = heuristic.evaluateState(state);
-	            return val;
+	        	return heuristic.evaluateState(state);
 	        }
 	        heuristic.evaluateEachCell(state, Value.USER_VALUE);
 	        ArrayList<EvalCell> list = heuristic.getOptimalList();
-	        for (int i = 0; i < list.size(); i++) {
-	            state.getState()[list.get(i).getCell().getX()][list.get(i).getCell().getY()] = Value.USER_VALUE;
+	        for (EvalCell item : list) {
+	            state.getState()[item.getCell().getX()][item.getCell().getY()] = Value.USER_VALUE;
 	            beta = Math.min(beta, maxValue(state, alpha, beta, depth + 1));
-	            state.getState()[list.get(i).getCell().getX()][list.get(i).getCell().getY()] = 0;
+	            state.getState()[item.getCell().getX()][item.getCell().getY()] = 0;
 	            if (alpha >= beta) {
 	                break;
 	            }

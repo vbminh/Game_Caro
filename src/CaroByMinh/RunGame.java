@@ -98,7 +98,7 @@ public class RunGame extends JFrame implements MouseListener{
 		contentPane.setLayout(null);
 		
 		TableCells = new JPanel();
-		TableCells.setBackground(Value.BACKGROUND_COLOR);
+		TableCells.setBackground(Value.CELL_COLOR);
 		TableCells.setLayout(new GridLayout(Value.SIZE, Value.SIZE, 0, 0));
 		TableCells.setBounds(Value.MARGIN, Value.MARGIN, Value.SIZE*Value.CELL_WIDTH, Value.SIZE*Value.CELL_WIDTH);
 		contentPane.add(TableCells);
